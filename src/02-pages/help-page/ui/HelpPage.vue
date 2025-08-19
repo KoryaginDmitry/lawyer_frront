@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <div class="main-layout">
-    <router-view/>
-  </div>
+  <div class="help-page">Hello</div>
 </template>
 
 <style scoped>

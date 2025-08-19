@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>123</div>
+  <div class="main-page">Hi</div>
 </template>
 
 <style scoped>
