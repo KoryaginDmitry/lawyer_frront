@@ -18,19 +18,19 @@ const navList = ref([
   {
     name: 'Реферальная программа',
     icon: 'user-plus',
-    link: '',
+    link: 'ReferralPage',
     ariaLabel: 'Перейти на страницу Реферальная программа'
   },
   {
     name: 'Подписки',
     icon: 'credit-card',
-    link: '',
+    link: 'SubsPage',
     ariaLabel: 'Перейти на страницу Подписки'
   },
   {
     name: 'Чат с ботом',
     icon: 'chat',
-    link: '',
+    link: 'ChatPage',
     ariaLabel: 'Перейти на страницу Чат с ботом'
   },
 ])
