@@ -1,17 +1,84 @@
+@use "@/06-shared/assets/breakpoints.scss";
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-stretch: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
   background: var(--bg-color);
-  line-height: 1.6;
+
+  @include breakpoints.media-above-1921 {
+    font-size: clamp(12px, 0.93vw, 36px);
+  }
 }
 
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+
+  @include breakpoints.media-under-sm {
+    padding: 0;
+  }
+
+  @include breakpoints.media-above-1921 {
+    max-width: 1720px;
+  }
+
+  @include breakpoints.media-above-2560 {
+    max-width: 1920px;
+  }
+
+  @include breakpoints.media-above-3840 {
+    max-width: 2560px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
+  padding: 0;
   margin: 0;
+}
+
+ul,
+li,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 a {
   text-decoration: none;
 }
 
-.container {
+input {
+  border: none;
+  outline: none;
 
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }

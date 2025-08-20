@@ -1,0 +1,60 @@
+/* Breakpoints system based on Bootstrap 4
+* You need to provide them to use - they are not included in the main file.
+* Usage example:
+@use "@/06-shared/assets/breakpoints";
+  .test {
+    color: red;
+    @include breakpoints.media-sm {
+      color: blue;
+    }
+  }
+* If you currently using grid system from PrimeVue or etc. you can replace
+* values in this file on your own.
+*/
+@mixin media-under-sm {
+  @media (max-width: 575px) {
+    @content;
+  }
+}
+
+@mixin media-under-md {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-under-lg {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin media-under-xl {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin media-under-xxl {
+  @media (max-width: 1399px) {
+    @content;
+  }
+}
+
+@mixin media-above-1921 {
+  @media (min-width: 1921px) {
+    @content;
+  }
+}
+
+@mixin media-above-2560 {
+  @media (min-width: 2560px) {
+    @content;
+  }
+}
+
+@mixin media-above-3840 {
+  @media (min-width: 3840px) {
+    @content;
+  }
+}
