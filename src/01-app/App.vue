@@ -8,4 +8,5 @@ import MainLayout from "@/01-app/layout/MainLayout.vue";
 
 <style lang="scss">
 @use "@/01-app/assets/main.scss";
+@use "@/01-app/assets/fonts/icomoon/icons.css";
 </style>

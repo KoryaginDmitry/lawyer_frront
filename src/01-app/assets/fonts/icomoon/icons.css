@@ -1,0 +1,206 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('icomoon.eot?hq870n');
+    src: url('icomoon.eot?hq870n#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?hq870n') format('truetype'),
+    url('icomoon.woff?hq870n') format('woff'),
+    url('icomoon.svg?hq870n#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+[class^="fontIcon-"], [class*=" fontIcon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fontIcon-home:before {
+    content: "\e900";
+}
+
+.fontIcon-edit:before {
+    content: "\e905";
+}
+
+.fontIcon-color:before {
+    content: "\e90b";
+}
+
+.fontIcon-photo:before {
+    content: "\e90e";
+}
+
+.fontIcon-camera:before {
+    content: "\e90f";
+}
+
+.fontIcon-archive:before {
+    content: "\e920";
+}
+
+.fontIcon-profile:before {
+    content: "\e923";
+}
+
+.fontIcon-copy:before {
+    content: "\e925";
+}
+
+.fontIcon-cart:before {
+    content: "\e93a";
+}
+
+.fontIcon-credit-card:before {
+    content: "\e93f";
+}
+
+.fontIcon-calculator:before {
+    content: "\e940";
+}
+
+.fontIcon-support:before {
+    content: "\e941";
+}
+
+.fontIcon-mail:before {
+    content: "\e945";
+}
+
+.fontIcon-clock:before {
+    content: "\e94e";
+}
+
+.fontIcon-download:before {
+    content: "\e95e";
+}
+
+.fontIcon-upload:before {
+    content: "\e95f";
+}
+
+.fontIcon-chat:before {
+    content: "\e96c";
+}
+
+.fontIcon-user-plus:before {
+    content: "\e973";
+}
+
+.fontIcon-search:before {
+    content: "\e986";
+}
+
+.fontIcon-key:before {
+    content: "\e98d";
+}
+
+.fontIcon-lock:before {
+    content: "\e98f";
+}
+
+.fontIcon-unlocked:before {
+    content: "\e990";
+}
+
+.fontIcon-settings:before {
+    content: "\e995";
+}
+
+.fontIcon-stats:before {
+    content: "\e99b";
+}
+
+.fontIcon-fire:before {
+    content: "\e9a9";
+}
+
+.fontIcon-delete:before {
+    content: "\e9ac";
+}
+
+.fontIcon-list:before {
+    content: "\e9b9";
+}
+
+.fontIcon-link:before {
+    content: "\e9cb";
+}
+
+.fontIcon-bookmark:before {
+    content: "\e9d2";
+}
+
+.fontIcon-contrast:before {
+    content: "\e9d5";
+}
+
+.fontIcon-like:before {
+    content: "\e9da";
+}
+
+.fontIcon-heart-broken:before {
+    content: "\e9db";
+}
+
+.fontIcon-notification:before {
+    content: "\ea08";
+}
+
+.fontIcon-question:before {
+    content: "\ea09";
+}
+
+.fontIcon-plus:before {
+    content: "\ea0a";
+}
+
+.fontIcon-minus:before {
+    content: "\ea0b";
+}
+
+.fontIcon-info:before {
+    content: "\ea0c";
+}
+
+.fontIcon-close:before {
+    content: "\ea0d";
+}
+
+.fontIcon-checkmark:before {
+    content: "\ea10";
+}
+
+.fontIcon-login:before {
+    content: "\ea13";
+}
+
+.fontIcon-exit:before {
+    content: "\ea14";
+}
+
+.fontIcon-arrow-right:before {
+    content: "\ea3c";
+}
+
+.fontIcon-arrow-left:before {
+    content: "\ea40";
+}
+
+.fontIcon-telegram:before {
+    content: "\ea95";
+}
+
+.fontIcon-linkedin:before {
+    content: "\eaca";
+}
