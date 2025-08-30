@@ -9,6 +9,10 @@ import {HeaderWidget} from "@/03-widgets/header";
   </div>
 </template>
 
-<style scoped>
-
+<style lang="scss">
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 </style>
