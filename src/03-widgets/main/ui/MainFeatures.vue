@@ -38,19 +38,31 @@
   grid-gap: 1.5rem;
 
   &__title {
+    margin-bottom: 1.5rem;
     font-size: 2rem;
     line-height: 100%;
     color: var(--text-color-1);
     text-align: center;
+
+    @include breakpoints.media-under-md {
+      font-size: 1.25rem;
+    }
+
+    @include breakpoints.media-under-sm {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
   }
 
   &__content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 2rem;
-    padding: 2rem 1rem;
 
     @include breakpoints.media-under-md {
+      flex-direction: column;
       grid-gap: 1.5rem;
     }
 
@@ -60,6 +72,7 @@
   }
 
   &__item {
+    width: 33%;
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -70,15 +83,18 @@
     border-radius: 16px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
     border: 1px solid transparent;
-    transform: translateY(15px);
     transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s, border-color 0.3s;
+
+    @include breakpoints.media-under-md {
+      width: 100%;
+    }
 
     @include breakpoints.media-under-sm {
       padding: 1rem;
     }
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-15px);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
       border: 1px solid var(--accent-color-1);
 
@@ -95,6 +111,10 @@
 
       @include breakpoints.media-under-md {
         font-size: 2.5rem;
+      }
+
+      @include breakpoints.media-under-sm {
+        font-size: 2rem;
       }
     }
 

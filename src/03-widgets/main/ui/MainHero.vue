@@ -76,6 +76,10 @@ import {Button} from "@/06-shared/ui/index.js";
 
   &__link {
     margin-top: .5rem;
+
+    >button {
+      padding: 1rem 1.25rem;
+    }
   }
 }
 </style>
