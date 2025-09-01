@@ -83,18 +83,7 @@ function toggleSidebar() {
 .header {
   padding: 1rem 0;
   background: var(--card-color);
-
-  @include breakpoints.media-above-1921 {
-    padding: 1.25rem 0;
-  }
-
-  @include breakpoints.media-above-2560 {
-    padding: 1.75rem 0;
-  }
-
-  @include breakpoints.media-above-3840 {
-    padding: 2.5rem 0;
-  }
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 
   &__content {
     display: flex;
@@ -111,18 +100,6 @@ function toggleSidebar() {
     img {
       width: 5.5rem;
       height: auto;
-
-      @include breakpoints.media-above-1921 {
-        width: 7rem;
-      }
-
-      @include breakpoints.media-above-2560 {
-        width: 10rem;
-      }
-
-      @include breakpoints.media-above-3840 {
-        width: 13rem;
-      }
     }
   }
 
@@ -131,14 +108,6 @@ function toggleSidebar() {
     flex-direction: row;
     align-items: center;
     grid-gap: 1.25rem;
-
-    @include breakpoints.media-above-1921 {
-      grid-gap: 1.5rem;
-    }
-
-    @include breakpoints.media-above-2560 {
-      grid-gap: 2rem;
-    }
   }
 
   &__nav-link {
@@ -146,31 +115,21 @@ function toggleSidebar() {
     flex-direction: row;
     align-items: center;
     grid-gap: 0.375rem;
-    color: var(--text-color);
+    font-size: 1.125rem;
+    line-height: 100%;
+    color: var(--text-color-1);
     transition: color 0.2s;
     cursor: pointer;
 
     &.router-link-exact-active {
-      color: var(--accent-color);
+      color: var(--accent-color-1);
     }
 
     .icon {
     }
 
     &:hover {
-      color: var(--accent-color);
-    }
-
-    @include breakpoints.media-above-1921 {
-      grid-gap: 0.5rem;
-    }
-
-    @include breakpoints.media-above-2560 {
-      grid-gap: 0.75rem;
-    }
-
-    @include breakpoints.media-above-3840 {
-      grid-gap: 1rem;
+      color: var(--accent-color-1);
     }
   }
 
@@ -201,7 +160,7 @@ function toggleSidebar() {
       position: relative;
       width: 100%;
       height: 0.125rem;
-      background: var(--text-color);
+      background: var(--text-color-1);
       transition: .3s ease-in-out;
 
       &::before {
@@ -212,7 +171,7 @@ function toggleSidebar() {
         right: 0;
         width: 100%;
         height: 0.125rem;
-        background: var(--text-color);
+        background: var(--text-color-1);
         transition: .3s ease-in-out;
       }
 
@@ -224,7 +183,7 @@ function toggleSidebar() {
         right: 0;
         width: 100%;
         height: 0.125rem;
-        background: var(--text-color);
+        background: var(--text-color-1);
         transition: .3s ease-in-out;
       }
     }

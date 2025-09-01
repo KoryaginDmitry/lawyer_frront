@@ -4,11 +4,17 @@
   box-sizing: border-box;
 }
 
+html {
+  @include breakpoints.media-above-1921 {
+    font-size: clamp(12px, 0.93vw, 36px);
+  }
+}
+
 html,body {
   height: 100%;
 }
 
-body {
+html body {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-stretch: 100%;
@@ -17,10 +23,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   background: var(--bg-color);
+}
 
-  @include breakpoints.media-above-1921 {
-    font-size: clamp(12px, 0.93vw, 36px);
-  }
+#app {
+  height: 100%;
 }
 
 .container {

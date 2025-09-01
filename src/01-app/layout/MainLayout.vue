@@ -5,7 +5,7 @@ import {HeaderWidget} from "@/03-widgets/header";
 <template>
   <div class="main-layout">
     <HeaderWidget/>
-    <router-view/>
+    <router-view class="page"/>
   </div>
 </template>
 
@@ -14,5 +14,9 @@ import {HeaderWidget} from "@/03-widgets/header";
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  .page {
+    flex-grow: 1;
+  }
 }
 </style>

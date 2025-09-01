@@ -70,7 +70,8 @@ const navList = ref([
   background: var(--card-color);
   transform: translateX(100%);
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-
+  z-index: var(--base-index);
+  
   &.active {
     transform: translateX(0);
   }
@@ -90,11 +91,11 @@ const navList = ref([
     align-items: center;
     grid-gap: 0.375rem;
 
-    color: var(--text-color);
+    color: var(--text-color-1);
     transition: color 0.2s;
 
     &.router-link-exact-active {
-      color: var(--accent-color);
+      color: var(--accent-color-1);
     }
 
     p,span {
@@ -107,7 +108,7 @@ const navList = ref([
     }
 
     &:hover {
-      color: var(--accent-color);
+      color: var(--accent-color-1);
     }
   }
 }
