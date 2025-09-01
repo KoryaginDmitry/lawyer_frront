@@ -20,7 +20,7 @@ jobs:
           version: '3,9'
 
       - name: Build docker containers
-        run: docker-compose up --build -d
+        run: docker compose up --build -d
 
   deploy:
     name: Deploy
