@@ -67,7 +67,7 @@ function toggleSidebar() {
           <span>Выход</span>
         </span>
       </nav>
-      <button v-if="utilityStore.isWindowTabletMaxSize" class="header__burger" :class="{'active' : sidebarIsOpen}"
+      <button v-if="utilityStore.isWindowTabletMaxSize" aria-label="Открыть/закрыть боковое меню" class="header__burger" :class="{'active' : sidebarIsOpen}"
               @click="toggleSidebar">
         <span></span>
       </button>

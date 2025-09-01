@@ -30,10 +30,14 @@
 @use "@/06-shared/assets/breakpoints.scss";
 
 .why {
-  padding: 1.5rem 0;
+  padding: 3rem 0;
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
+
+  @include breakpoints.media-under-md {
+    padding: 2rem 0;
+  }
 
   &__title {
     margin-bottom: 1.5rem;

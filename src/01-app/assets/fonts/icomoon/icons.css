@@ -204,3 +204,7 @@
 .fontIcon-linkedin:before {
     content: "\eaca";
 }
+
+.fontIcon-star:before {
+    content: "\e901";
+}
