@@ -1,10 +1,12 @@
 <script setup>
-import {MainHero} from "@/03-widgets/main/ui/index.js";
+import {MainFeatures, MainHero, MainWhy} from "@/03-widgets/main/ui/index.js";
 </script>
 
 <template>
   <div class="main-page">
     <MainHero/>
+    <MainFeatures/>
+    <MainWhy/>
   </div>
 </template>
 

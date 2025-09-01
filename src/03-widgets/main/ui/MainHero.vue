@@ -4,13 +4,13 @@ import {Button} from "@/06-shared/ui/index.js";
 </script>
 
 <template>
-  <div class="main-hero">
+  <div class="hero">
     <div class="container">
-      <div class="main-hero__content">
-        <h1 class="main-hero__title">Ваш персональный юридический AI-помощник</h1>
-        <p class="main-hero__subtitle">Мгновенные, точные и развёрнутые ответы на ваши вопросы. Попробуйте
+      <div class="hero__content">
+        <h1 class="hero__title">Ваш персональный юридический AI-помощник</h1>
+        <p class="hero__subtitle">Мгновенные, точные и развёрнутые ответы на ваши вопросы. Попробуйте
           инновационного юридического ИИ-бота уже сейчас!</p>
-        <a class="main-hero__link" href="https://t.me/PersonalAILawyerBot" target="_blank">
+        <a class="hero__link" href="https://t.me/PersonalAILawyerBot" target="_blank">
           <Button class="btn__primary">
             Начать использовать
           </Button>
@@ -23,8 +23,12 @@ import {Button} from "@/06-shared/ui/index.js";
 <style scoped lang="scss">
 @use "@/06-shared/assets/breakpoints.scss";
 
-.main-hero {
-  padding: 1.25rem 0;
+.hero {
+  padding: 5.5rem 0;
+
+  @include breakpoints.media-under-md {
+    padding: 3rem 0;
+  }
 
   @include breakpoints.media-under-sm {
     padding: 0.75rem 0;

@@ -82,8 +82,11 @@ function toggleSidebar() {
 
 .header {
   padding: 1rem 0;
+  inset: 0;
   background: var(--card-color);
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  position: sticky;
+  z-index: var(--base-index);
 
   &__content {
     display: flex;
