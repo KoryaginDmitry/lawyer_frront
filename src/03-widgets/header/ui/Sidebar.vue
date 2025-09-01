@@ -18,12 +18,6 @@ const navList = ref([
     ariaLabel: 'Перейти на страницу Помощь'
   },
   {
-    name: 'Реферальная программа',
-    icon: 'user-plus',
-    link: 'ReferralPage',
-    ariaLabel: 'Перейти на страницу Реферальная программа'
-  },
-  {
     name: 'Подписки',
     icon: 'credit-card',
     link: 'SubsPage',
@@ -34,6 +28,12 @@ const navList = ref([
     icon: 'chat',
     link: 'ChatPage',
     ariaLabel: 'Перейти на страницу Чат с ботом'
+  },
+  {
+    name: 'Личный кабинет',
+    icon: 'profile',
+    link: 'ProfilePage',
+    ariaLabel: 'Перейти в личный кабинет'
   },
 ])
 </script>

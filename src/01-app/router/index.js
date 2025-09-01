@@ -14,12 +14,6 @@ const routes = [
             import("@/02-pages/help-page/ui/HelpPage.vue"),
     },
     {
-        path: "/referral",
-        name: "ReferralPage",
-        component: () =>
-            import("@/02-pages/referral-page/ui/ReferralPage.vue"),
-    },
-    {
         path: "/subs",
         name: "SubsPage",
         component: () =>
@@ -30,6 +24,12 @@ const routes = [
         name: "ChatPage",
         component: () =>
             import("@/02-pages/chat-page/ui/ChatPage.vue"),
+    },
+    {
+        path: "/profile",
+        name: "ProfilePage",
+        component: () =>
+            import("@/02-pages/profile-page/ui/ProfilePage.vue"),
     },
 ];
 

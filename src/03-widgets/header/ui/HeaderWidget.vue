@@ -20,12 +20,6 @@ const navList = ref([
     ariaLabel: 'Перейти на страницу Помощь'
   },
   {
-    name: 'Реферальная программа',
-    icon: 'user-plus',
-    link: 'ReferralPage',
-    ariaLabel: 'Перейти на страницу Реферальная программа'
-  },
-  {
     name: 'Подписки',
     icon: 'credit-card',
     link: 'SubsPage',
@@ -36,6 +30,12 @@ const navList = ref([
     icon: 'chat',
     link: 'ChatPage',
     ariaLabel: 'Перейти на страницу Чат с ботом'
+  },
+  {
+    name: 'Личный кабинет',
+    icon: 'profile',
+    link: 'ProfilePage',
+    ariaLabel: 'Перейти в личный кабинет'
   },
 ])
 
@@ -148,6 +148,7 @@ function toggleSidebar() {
     grid-gap: 0.375rem;
     color: var(--text-color);
     transition: color 0.2s;
+    cursor: pointer;
 
     &.router-link-exact-active {
       color: var(--accent-color);
