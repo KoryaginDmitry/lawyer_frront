@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  vue-app:
+    build: .
+    container_name: vue_app
+    ports:
+      - "3000:80"  # пробрасываем порт 80 контейнера на 3000 локально
+    restart: unless-stopped
