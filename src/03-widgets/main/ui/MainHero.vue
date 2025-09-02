@@ -10,11 +10,11 @@ import {Button} from "@/06-shared/ui/index.js";
         <h1 class="hero__title">Ваш персональный юридический AI-помощник</h1>
         <p class="hero__subtitle">Мгновенные, точные и развёрнутые ответы на ваши вопросы. Попробуйте
           инновационного юридического ИИ-бота уже сейчас!</p>
-        <a class="hero__link" href="https://t.me/PersonalAILawyerBot" target="_blank">
+        <router-link class="hero__link" :to="{name: 'ChatPage'}">
           <Button class="btn__primary">
             Начать использовать
           </Button>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>
@@ -75,9 +75,9 @@ import {Button} from "@/06-shared/ui/index.js";
   }
 
   &__link {
-    margin-top: .5rem;
+    margin-top: 1.25rem;
 
-    >button {
+    > button {
       padding: 1rem 1.25rem;
     }
   }

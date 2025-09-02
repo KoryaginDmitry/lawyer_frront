@@ -52,6 +52,7 @@ function handleClick() {
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-gap: 0.25rem;
   position: relative;
   font-family: "Inter", sans-serif;
   font-style: normal;

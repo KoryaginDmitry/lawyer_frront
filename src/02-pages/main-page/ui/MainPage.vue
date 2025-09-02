@@ -1,5 +1,6 @@
 <script setup>
 import {MainFeatures, MainHero, MainReviews, MainWhy} from "@/03-widgets/main/ui/index.js";
+import MainTry from "@/03-widgets/main/ui/MainTry.vue";
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import {MainFeatures, MainHero, MainReviews, MainWhy} from "@/03-widgets/main/ui
     <MainFeatures/>
     <MainWhy/>
     <MainReviews/>
+    <MainTry/>
   </div>
 </template>
 

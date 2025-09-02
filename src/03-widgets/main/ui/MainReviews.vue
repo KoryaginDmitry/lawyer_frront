@@ -50,6 +50,8 @@ const carouselData = ref([
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
+  border-top: 1px solid var(--card-color);
+
 
   @include breakpoints.media-under-md {
     padding: 2rem 0;
