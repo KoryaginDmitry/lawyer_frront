@@ -1,6 +1,8 @@
 <script setup>
-import {MainFeatures, MainHero, MainReviews, MainWhy} from "@/03-widgets/main/ui/index.js";
+import {MainFeatures, MainHero, MainWhy} from "@/03-widgets/main/ui/index.js";
 import MainTry from "@/03-widgets/main/ui/MainTry.vue";
+import MainReviews from "@/04-features/reviews/MainReviews.vue";
+
 </script>
 
 <template>

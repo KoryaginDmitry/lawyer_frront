@@ -3,25 +3,30 @@ import {Carousel, Slide} from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import {ref} from "vue";
 import {Rating} from "@/04-features/rating/index.js";
+import requestConfig from "@/04-features/reviews/requestConfig.js"
+import {Skeleton} from "@/06-shared/ui/index.js";
 
-const carouselData = ref([
-  {
-    text: 'Бот помог мне быстро получить юридическую консультацию. Огромное спасибо!',
-    user: 'Ирина П.'
-  },
-  {
-    text: 'Бот помог мне быстро получить юридическую консультацию. Огромное спасибо!',
-    user: 'Ирина П.'
-  },
-  {
-    text: 'Бот помог мне быстро получить юридическую консультацию. Огромное спасибо!',
-    user: 'Ирина П.'
-  },
-  {
-    text: 'Бот помог мне быстро получить юридическую консультацию. Огромное спасибо!',
-    user: 'Ирина П.'
-  },
-])
+const carouselData = ref([]);
+
+async function getReviews() {
+  try {
+    const response = await fetch(requestConfig.GETReviews.url);
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    const data = await response.json();
+
+    carouselData.value = data.data.map((item) => ({
+      rating: item.grade ?? 5,
+      text: item.text,
+      user: item.user,
+    }))
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+getReviews();
 </script>
 
 <template>
@@ -29,13 +34,23 @@ const carouselData = ref([
     <div class="container">
       <h2 class="reviews__title">Отзывы пользователей</h2>
       <div class="reviews__content">
-        <Carousel :items-to-show="1" :wrap-around="true" :gap="20" :mouse-drag="false"
-                  :touch-drag="false">
-          <Slide class="reviews__item" v-for="(item, index) in carouselData" :key="index">
-            <p class="reviews__item-text">{{ item.text }}</p>
-            <p class="reviews__item-user">- {{ item.user }}</p>
-            <Rating :rating="3.3"/>
+        <Carousel :items-to-show="1"
+                  :gap="20"
+                  :autoplay="3000"
+                  :mouse-drag="false"
+                  :wrap-around="true"
+                  :touch-drag="false"
+        >
+          <Slide v-if="carouselData.length" class="reviews__item" v-for="(item, index) in carouselData" :key="index">
+            <p class="reviews__item-text">"{{ item.text.length > 300 ? item.text.slice(0, 300) + '...' : item.text }}"</p>
+            <p class="reviews__item-user" v-if="item.user">- {{ item.user }}</p>
+            <Rating :rating="item.rating"/>
           </Slide>
+          <template v-else>
+            <Slide v-for="index in 5" :key="index">
+              <Skeleton width="100%" height="190"/>
+            </Slide>
+          </template>
         </Carousel>
       </div>
     </div>
@@ -43,7 +58,7 @@ const carouselData = ref([
 </template>
 
 <style scoped lang="scss">
-@use "@/06-shared/assets/breakpoints.scss";
+@use "@/06-shared/assets/breakpoints";
 
 .reviews {
   padding: 3rem 0;
@@ -100,6 +115,7 @@ const carouselData = ref([
     font-style: italic;
     line-height: 100%;
     color: var(--text-color-1);
+    text-align: center;
 
     @include breakpoints.media-under-md {
       font-size: 1.4rem;
