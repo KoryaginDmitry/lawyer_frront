@@ -15,11 +15,11 @@ async function getReviews() {
       throw new Error(response.status)
     }
     const data = await response.json();
-
+    console.log(data);
     carouselData.value = data.data.map((item) => ({
       rating: item.grade ?? 5,
       text: item.text,
-      user: item.user,
+      user: item.user.name,
     }))
   } catch (e) {
     console.error(e);
