@@ -79,7 +79,7 @@ const starsFill = computed(() => {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-color-1);
-    text-align: left;
+    text-align: center;
   }
 }
 </style>

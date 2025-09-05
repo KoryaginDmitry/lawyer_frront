@@ -4,9 +4,10 @@ import 'vue3-carousel/dist/carousel.css'
 import {ref} from "vue";
 import {Rating} from "@/04-features/rating/index.js";
 import requestConfig from "@/04-features/reviews/requestConfig.js"
-import {Skeleton} from "@/06-shared/ui/index.js";
+import {Icon, Skeleton} from "@/06-shared/ui/index.js";
 
 const carouselData = ref([]);
+const averageRating = ref(null)
 
 async function getReviews() {
   try {
@@ -16,10 +17,15 @@ async function getReviews() {
     }
     const data = await response.json();
     console.log(data);
+
+    averageRating.value = data.avg;
+
     carouselData.value = data.data.map((item) => ({
       rating: item.grade ?? 5,
       text: item.text,
-      user: item.user.name,
+      user: item.user?.name && item.user.name.trim().length > 0
+          ? item.user.name
+          : 'Аноним',
     }))
   } catch (e) {
     console.error(e);
@@ -33,6 +39,10 @@ getReviews();
   <div class="reviews">
     <div class="container">
       <h2 class="reviews__title">Отзывы пользователей</h2>
+      <p class="reviews__subtitle">Наш средний рейтинг
+        <Icon type="star"/>
+        {{ averageRating }}
+      </p>
       <div class="reviews__content">
         <Carousel :items-to-show="1"
                   :gap="20"
@@ -42,8 +52,10 @@ getReviews();
                   :touch-drag="false"
         >
           <Slide v-if="carouselData.length" class="reviews__item" v-for="(item, index) in carouselData" :key="index">
-            <p class="reviews__item-text">"{{ item.text.length > 300 ? item.text.slice(0, 300) + '...' : item.text }}"</p>
-            <p class="reviews__item-user" v-if="item.user">- {{ item.user }}</p>
+            <p class="reviews__item-text">"{{
+                item.text.length > 300 ? item.text.slice(0, 300) + '...' : item.text
+              }}"</p>
+            <p class="reviews__item-user">- {{ item.user }}</p>
             <Rating :rating="item.rating"/>
           </Slide>
           <template v-else>
@@ -73,18 +85,38 @@ getReviews();
   }
 
   &__title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
     line-height: 100%;
     color: var(--text-color-1);
     text-align: center;
+
+    @include breakpoints.media-under-sm {
+      font-size: 1rem;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 0.375rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 100%;
+    text-align: center;
+    color: var(--text-color-1);
+
+    i {
+      color: var(--yellow-1);
+    }
 
     @include breakpoints.media-under-md {
       font-size: 1.25rem;
     }
 
     @include breakpoints.media-under-sm {
-      font-size: 1rem;
+      font-size: 0.75rem;
       margin-bottom: 1rem;
     }
   }
@@ -127,6 +159,10 @@ getReviews();
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 100%;
+    width: 200px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     @include breakpoints.media-under-md {
       font-size: 0.95rem;
