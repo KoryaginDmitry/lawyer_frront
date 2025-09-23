@@ -15,7 +15,7 @@ import {FooterWidget} from "@/03-widgets/footer/index.js";
 .main-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 
   .page {
     flex-grow: 1;
