@@ -25,4 +25,8 @@ function handleWindowSizeChange() {
 <style lang="scss">
 @use "@/01-app/assets/main.scss";
 @use "@/01-app/assets/fonts/icomoon/icons.css";
+
+#app {
+  height: 100%;
+}
 </style>

@@ -16,7 +16,6 @@ async function getReviews() {
       throw new Error(response.status)
     }
     const data = await response.json();
-    console.log(data);
 
     averageRating.value = data.avg;
 
@@ -41,7 +40,10 @@ getReviews();
       <h2 class="reviews__title">Отзывы пользователей</h2>
       <p class="reviews__subtitle">Наш средний рейтинг
         <Icon type="star"/>
-        {{ averageRating }}
+        <span v-if="averageRating">
+          {{ averageRating }}
+        </span>
+        <Skeleton v-else width="42" height="20"/>
       </p>
       <div class="reviews__content">
         <Carousel :items-to-show="1"
@@ -158,7 +160,7 @@ getReviews();
     color: var(--text-color-1);
     font-size: 1.25rem;
     font-weight: 600;
-    line-height: 100%;
+    line-height: 110%;
     width: 200px;
     text-align: center;
     text-overflow: ellipsis;

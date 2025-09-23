@@ -91,7 +91,16 @@ function handleClick() {
   }
 
   &__secondary {
+    padding: 0.625rem 0.75rem;
+    background: transparent;
+    border: 1px solid var(--accent-color-1);
+    color: var(--accent-color-1);
 
+    &:hover {
+      background: var(--accent-color-1);
+      border: 1px solid transparent;
+      color: var(--text-color-1);
+    }
   }
 }
 </style>

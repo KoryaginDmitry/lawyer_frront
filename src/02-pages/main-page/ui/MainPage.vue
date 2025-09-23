@@ -2,6 +2,7 @@
 import {MainFeatures, MainHero, MainWhy} from "@/03-widgets/main/ui/index.js";
 import MainTry from "@/03-widgets/main/ui/MainTry.vue";
 import MainReviews from "@/04-features/reviews/MainReviews.vue";
+import Feedback from "@/04-features/feedback/Feedback.vue";
 
 </script>
 
@@ -11,6 +12,7 @@ import MainReviews from "@/04-features/reviews/MainReviews.vue";
     <MainFeatures/>
     <MainWhy/>
     <MainReviews/>
+    <Feedback/>
     <MainTry/>
   </div>
 </template>
