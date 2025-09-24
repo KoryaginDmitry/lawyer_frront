@@ -13,6 +13,9 @@ async function sendFeedback() {
   try {
     const response = await fetch(requestConfig.POSTFeedback.url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         contacts: feedbackData.value.contact,
         text: feedbackData.value.message,
