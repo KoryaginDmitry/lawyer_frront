@@ -26,7 +26,7 @@ async function sendFeedback() {
     }
 
     console.log(feedbackData.value);
-    console.log(response);
+    console.log(response.data);
 
     const result = await response.json();
     console.log("Успешно отправлено:", result);
