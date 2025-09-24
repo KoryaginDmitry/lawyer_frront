@@ -8,6 +8,7 @@ const feedbackData = ref({
   message: '',
 })
 
+
 async function sendFeedback() {
   try {
     const response = await fetch(requestConfig.POSTFeedback.url, {
@@ -21,10 +22,12 @@ async function sendFeedback() {
       throw new Error(response.status)
     }
 
+    console.log(feedbackData.value);
+    console.log(response);
+
     const result = await response.json();
     console.log("Успешно отправлено:", result);
 
-    // очистить форму
     feedbackData.value = {contact: "", message: ""};
   } catch (e) {
     console.error("Ошибка при отправке:", e);
