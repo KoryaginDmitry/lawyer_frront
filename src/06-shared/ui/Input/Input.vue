@@ -1,27 +1,39 @@
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 
 const props = defineProps({
   field: Object,
   input: Object,
   placeholder: String,
   ariaLabel: String,
-})
-
-const emit = defineEmits(["update:modelValue", "input-keyup", "blur"]);
-
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(value) {
-    emit("update:modelValue", value);
+  modelValue: [String, Number],
+  error: {
+    type: String,
+    default: "",
   },
 });
+
+const emit = defineEmits(["update:modelValue", "blur"]);
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (val) => emit("update:modelValue", val),
+});
+
+const touched = ref(false);
+
+function onBlur() {
+  touched.value = true;
+  emit("blur");
+}
+
+const hasError = computed(() => touched.value && !!props.error);
 </script>
 
 <template>
-  <o-field class="input-wrapper"
+  <o-field
+      class="input-wrapper"
+      :class="{ 'input-error': hasError }"
   >
     <o-input
         icon-pack="icon"
@@ -30,7 +42,12 @@ const value = computed({
         v-bind="props.input"
         :placeholder="placeholder"
         :aria-label="ariaLabel"
+        :class="{ 'o-input--error': hasError }"
+        @blur="onBlur"
     />
+    <transition name="fade">
+      <p v-if="touched && error" class="input-error__message">{{ error }}</p>
+    </transition>
   </o-field>
 </template>
 
@@ -44,6 +61,33 @@ const value = computed({
     color: var(--text-color-1);
     font-size: 0.875rem;
     line-height: 110%;
+  }
+
+  .input-error__message {
+    color: var(--red-1);
+    font-size: 0.875rem;
+    line-height: 110%;
+  }
+
+  &.input-error {
+    .o-input {
+      .o-input__input {
+        border: 1px solid var(--red-1);
+        transition: all 0.2s ease-in;
+
+        &:hover {
+          border: 1px solid var(--red-2);
+        }
+
+        &:focus {
+          border: 1px solid var(--red-2);
+        }
+
+        &::placeholder {
+          color: var(--red-2);
+        }
+      }
+    }
   }
 
   .o-input {
@@ -65,6 +109,12 @@ const value = computed({
 
       &:focus {
         border: 1px solid var(--accent-color-1);
+      }
+
+      &::placeholder {
+        font-size: 1rem;
+        line-height: 110%;
+        color: var(--gray-1);
       }
     }
 

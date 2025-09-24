@@ -96,6 +96,11 @@ function handleClick() {
     border: 1px solid var(--accent-color-1);
     color: var(--accent-color-1);
 
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     &:hover {
       background: var(--accent-color-1);
       border: 1px solid transparent;
