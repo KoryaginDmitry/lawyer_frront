@@ -21,9 +21,11 @@ const value = computed({
 </script>
 
 <template>
-  <o-field class="input-wrapper">
+  <o-field class="input-wrapper"
+  >
     <o-input
         icon-pack="icon"
+        :useHtml5Validation="true"
         v-model="value"
         v-bind="props.input"
         :placeholder="placeholder"

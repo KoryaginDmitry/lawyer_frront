@@ -1,24 +1,51 @@
 <script setup>
 import {Button, Input} from "@/06-shared/ui/index.js";
 import {ref} from "vue";
+import requestConfig from "@/04-features/feedback/requestConfig.js";
 
-const inputValue = ref('')
+const feedbackData = ref({
+  contact: '',
+  message: '',
+})
 
-console.log(inputValue.value)
+async function sendFeedback() {
+  try {
+    const response = await fetch(requestConfig.POSTFeedback.url, {
+      method: "POST",
+      body: JSON.stringify({
+        contacts: feedbackData.value.contact,
+        text: feedbackData.value.message,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const result = await response.json();
+    console.log("Успешно отправлено:", result);
+
+    // очистить форму
+    feedbackData.value = {contact: "", message: ""};
+  } catch (e) {
+    console.error("Ошибка при отправке:", e);
+  }
+}
+
 </script>
 
 <template>
   <div class="feedback">
     <h2 class="section-title">Связь с нами</h2>
     <div class="container">
-      <form class="feedback__content">
-        <Input label="Ваша почта или телеграм" v-model="inputValue"/>
+      <form @submit.prevent class="feedback__content">
+        <Input label="Ваша почта или телеграм" v-model="feedbackData.contact"/>
         <Input label="Вашe сообщение"
                :input="{
                   type: 'textarea',
                }"
+               v-model="feedbackData.message"
         />
-        <Button class="btn__secondary feedback__content-btn">Отправить</Button>
+        <Button class="btn__secondary feedback__content-btn" @click="sendFeedback">Отправить</Button>
       </form>
     </div>
   </div>
