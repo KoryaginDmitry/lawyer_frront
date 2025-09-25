@@ -11,7 +11,7 @@ const routes = [
         path: "/help",
         name: "HelpPage",
         component: () =>
-            import("@/02-pages/help-page/ui/HelpPage.vue"),
+            import("@/02-pages/faq-page/ui/FaqPage.vue"),
     },
     {
         path: "/subs",

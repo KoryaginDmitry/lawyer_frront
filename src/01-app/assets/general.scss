@@ -48,11 +48,40 @@ html body {
 }
 
 .section-title {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   font-size: 2rem;
   line-height: 100%;
   color: var(--text-color-1);
   text-align: center;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--card-color);
+  }
+
+  &::before {
+    margin: 0 1rem 0 0;
+  }
+
+  &::after {
+    margin: 0 0 0 1rem;
+  }
+
+  @include breakpoints.media-under-md {
+    font-size: 1.25rem;
+  }
+
+  @include breakpoints.media-under-sm {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 h1,

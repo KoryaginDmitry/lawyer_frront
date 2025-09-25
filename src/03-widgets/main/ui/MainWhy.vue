@@ -4,7 +4,7 @@
 <template>
   <div class="why">
     <div class="container">
-      <h2 class="why__title">Почему выбирают нас</h2>
+      <h2 class="section-title">Почему выбирают нас</h2>
       <div class="why__content">
         <div class="why__item">
           <div class="why__item-icon">⏰</div>
@@ -34,27 +34,9 @@
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
-  border-top: 1px solid var(--card-color);
 
   @include breakpoints.media-under-md {
     padding: 2rem 0;
-  }
-
-  &__title {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    line-height: 100%;
-    color: var(--text-color-1);
-    text-align: center;
-
-    @include breakpoints.media-under-md {
-      font-size: 1.25rem;
-    }
-
-    @include breakpoints.media-under-sm {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
   }
 
   &__content {

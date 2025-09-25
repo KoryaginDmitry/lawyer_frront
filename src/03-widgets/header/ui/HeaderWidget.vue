@@ -14,7 +14,7 @@ const navList = ref([
     ariaLabel: 'Перейти на главную страницу'
   },
   {
-    name: 'Помощь',
+    name: 'FAQ',
     icon: 'support',
     link: 'HelpPage',
     ariaLabel: 'Перейти на страницу Помощь'

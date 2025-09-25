@@ -18,6 +18,7 @@ import {FooterWidget} from "@/03-widgets/footer/index.js";
   min-height: 100%;
 
   .page {
+    padding: 1.25rem 0;
     flex-grow: 1;
   }
 }

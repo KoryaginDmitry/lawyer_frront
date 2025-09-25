@@ -37,7 +37,7 @@ getReviews();
 <template>
   <div class="reviews">
     <div class="container">
-      <h2 class="reviews__title">Отзывы пользователей</h2>
+      <h2 class="section-title">Отзывы пользователей</h2>
       <p class="reviews__subtitle">Наш средний рейтинг
         <Icon type="star"/>
         <span v-if="averageRating">
@@ -79,23 +79,9 @@ getReviews();
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
-  border-top: 1px solid var(--card-color);
-
 
   @include breakpoints.media-under-md {
     padding: 2rem 0;
-  }
-
-  &__title {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    line-height: 100%;
-    color: var(--text-color-1);
-    text-align: center;
-
-    @include breakpoints.media-under-sm {
-      font-size: 1rem;
-    }
   }
 
   &__subtitle {

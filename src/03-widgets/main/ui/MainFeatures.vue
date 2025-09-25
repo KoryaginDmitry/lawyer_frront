@@ -4,7 +4,7 @@
 <template>
   <div class="features">
     <div class="container">
-      <h2 class="features__title">Возможности бота</h2>
+      <h2 class="section-title">Возможности бота</h2>
       <div class="features__content">
         <transition-group name="fade">
           <div class="features__item">
@@ -36,27 +36,9 @@
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
-  border-top: 1px solid var(--card-color);
 
   @include breakpoints.media-under-md {
     padding: 2rem 0;
-  }
-
-  &__title {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    line-height: 100%;
-    color: var(--text-color-1);
-    text-align: center;
-
-    @include breakpoints.media-under-md {
-      font-size: 1.25rem;
-    }
-
-    @include breakpoints.media-under-sm {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
   }
 
   &__content {

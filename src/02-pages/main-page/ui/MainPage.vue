@@ -19,6 +19,5 @@ import Feedback from "@/04-features/feedback/Feedback.vue";
 
 <style lang="scss" scoped>
 .main-page {
-  padding: 1.25rem 0;
 }
 </style>

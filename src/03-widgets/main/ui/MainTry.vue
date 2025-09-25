@@ -1,12 +1,14 @@
 <script setup>
-
 import {Button, Icon} from "@/06-shared/ui/index.js";
+import {useUtilityStore} from "@/06-shared/utils/utilityStore.js";
+
+const utilityStore = useUtilityStore()
 </script>
 
 <template>
   <div class="try">
     <div class="container">
-      <h2 class="try__title">Попробуйте нашего юридического ИИ-бота прямо сейчас!</h2>
+      <h2 class="section-title">{{ !utilityStore.isWindowTabletSize ? "Попробуйте нашего юридического ИИ - бота прямо сейчас!" : "Наш юридический ИИ - бот" }}</h2>
       <div class="try__content">
         <a class="try__link" href="https://t.me/PersonalAILawyerBot" target="_blank">
           <Button class="btn__primary">
@@ -27,27 +29,9 @@ import {Button, Icon} from "@/06-shared/ui/index.js";
   display: flex;
   flex-direction: column;
   grid-gap: 1.5rem;
-  border-top: 1px solid var(--card-color);
 
   @include breakpoints.media-under-md {
     padding: 2rem 0;
-  }
-
-  &__title {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    line-height: 100%;
-    color: var(--text-color-1);
-    text-align: center;
-
-    @include breakpoints.media-under-md {
-      font-size: 1.25rem;
-    }
-
-    @include breakpoints.media-under-sm {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
   }
 
   &__content {

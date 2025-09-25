@@ -22,5 +22,8 @@ defineProps({
 
 <style lang="scss">
 .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

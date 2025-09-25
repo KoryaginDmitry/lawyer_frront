@@ -85,8 +85,8 @@ async function sendFeedback() {
 
 <template>
   <div class="feedback">
-    <h2 class="section-title">Связь с нами</h2>
     <div class="container">
+      <h2 class="section-title">Связь с нами</h2>
       <form :key="formResetKey" @submit.prevent class="feedback__content">
         <Input label="Ваша почта или телеграм" v-model="feedbackData.contact"
                :placeholder="!utilityStore.isWindowPhoneSize ? 'Формат @telegramTag или email@email.com' : '@telegram или email@email.com'"
@@ -116,8 +116,6 @@ async function sendFeedback() {
   padding: 3rem 0;
   display: flex;
   flex-direction: column;
-  grid-gap: 1.5rem;
-  border-top: 1px solid var(--card-color);
 
   &__content {
     padding: 1.25rem;
