@@ -31,6 +31,24 @@ const routes = [
         component: () =>
             import("@/02-pages/profile-page/ui/ProfilePage.vue"),
     },
+    {
+        path: "/login",
+        name: "LoginPage",
+        component: () =>
+            import("@/02-pages/login-page/ui/LoginPage.vue"),
+    },
+    {
+        path: "/registration",
+        name: "RegPage",
+        component: () =>
+            import("@/02-pages/reg-page/ui/RegPage.vue"),
+    },
+    {
+        path: "/verify-email/:id/:hash",
+        name: "VerifyEmailPage",
+        component: () =>
+            import("@/02-pages/verify-page/ui/VerifyPage.vue"),
+    },
 ];
 
 const router = createRouter({

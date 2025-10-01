@@ -1,14 +1,20 @@
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 import MainLayout from "@/01-app/layout/MainLayout.vue";
-import {useUtilityStore} from "@/06-shared/utils/utilityStore.js";
+import { useUtilityStore } from "@/06-shared/utils/utilityStore.js";
+import { useUserStore } from "@/05-entities/user/userStore.js";
 
 const utilityStore = useUtilityStore();
+const userStore = useUserStore();
 
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener("resize", handleWindowSizeChange);
   handleWindowSizeChange();
+
+  // ждём, пока токен подтянется и юзер заполнится
+  // await userStore.initAuth();
 });
+
 onUnmounted(() => {
   window.removeEventListener("resize", handleWindowSizeChange);
 });

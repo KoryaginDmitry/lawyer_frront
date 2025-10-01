@@ -69,9 +69,6 @@ async function sendFeedback() {
       throw new Error(response.status)
     }
 
-    const result = await response.json();
-    console.log("Успешно отправлено:", result);
-
     feedbackData.value = {contact: null, message: null};
     errors.value = {contact: null, message: null};
 

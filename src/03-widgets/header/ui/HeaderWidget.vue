@@ -3,9 +3,10 @@ import {ref} from "vue";
 import {Icon} from "@/06-shared/ui";
 import {Sidebar} from "@/03-widgets/header/index.js";
 import {useUtilityStore} from "@/06-shared/utils/utilityStore.js";
+import {useUserStore} from "@/05-entities/user/userStore.js";
 
 const utilityStore = useUtilityStore();
-
+const userStore = useUserStore()
 const navList = ref([
   {
     name: 'Главная',
@@ -31,12 +32,6 @@ const navList = ref([
     link: 'ChatPage',
     ariaLabel: 'Перейти на страницу Чат с ботом'
   },
-  {
-    name: 'Личный кабинет',
-    icon: 'profile',
-    link: 'ProfilePage',
-    ariaLabel: 'Перейти в личный кабинет'
-  },
 ])
 
 const sidebarIsOpen = ref(false);
@@ -45,6 +40,10 @@ function toggleSidebar() {
   sidebarIsOpen.value = !sidebarIsOpen.value;
   document.body.style.overflow = sidebarIsOpen.value ? "hidden" : "";
 }
+
+const handleLogout = () => {
+  userStore.logout();
+};
 </script>
 
 <template>
@@ -58,16 +57,37 @@ function toggleSidebar() {
                      v-for="(item, index) in navList"
                      :key="index"
                      :to="{name: item.link}"
-                     :aria-label="item.ariaLabel">
+                     :aria-label="item.ariaLabel"
+        >
           <Icon :type="item.icon"/>
           <p>{{ item.name }}</p>
         </router-link>
-        <span class="header__nav-link">
+        <router-link v-if="userStore.isAuth"
+                     :to="{name: 'ProfilePage'}"
+                     class="header__nav-link"
+                     aria-label="Перейти в личный кабинет">
+          <Icon type="profile"/>
+          <p>Личный кабинет</p>
+        </router-link>
+        <span v-if="userStore.isAuth" class="header__nav-link" @click="handleLogout">
           <Icon type="exit"/>
           <span>Выход</span>
         </span>
+        <router-link v-if="!userStore.isAuth" :to="{name: 'LoginPage'}">
+          <span class="header__nav-link">
+            <Icon type="login"/>
+            <span>Войти</span>
+          </span>
+        </router-link>
+        <router-link v-if="!userStore.isAuth" :to="{name: 'RegPage'}">
+          <span class="header__nav-link">
+            <Icon type="login"/>
+            <span>Регистрация</span>
+          </span>
+        </router-link>
       </nav>
-      <button v-if="utilityStore.isWindowTabletMaxSize" aria-label="Открыть/закрыть боковое меню" class="header__burger" :class="{'active' : sidebarIsOpen}"
+      <button v-if="utilityStore.isWindowTabletMaxSize" aria-label="Открыть/закрыть боковое меню" class="header__burger"
+              :class="{'active' : sidebarIsOpen}"
               @click="toggleSidebar">
         <span></span>
       </button>
@@ -84,7 +104,7 @@ function toggleSidebar() {
   padding: 1rem 0;
   inset: 0;
   background: var(--card-color);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   position: sticky;
   z-index: var(--base-index);
 
