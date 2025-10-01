@@ -1,4 +1,4 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import registerConfig from '../requestConfig'
 
 export const useRegisterStore = defineStore('register', {
@@ -6,8 +6,6 @@ export const useRegisterStore = defineStore('register', {
         loading: false,
         error: null,
         backendErrors: {},
-        tempId: null,
-        token: null,
     }),
 
     actions: {
@@ -17,10 +15,12 @@ export const useRegisterStore = defineStore('register', {
             this.backendErrors = {}
 
             try {
-                // 1. Регистрация
                 const res = await fetch(registerConfig.POSTReg.url, {
                     method: registerConfig.POSTReg.type.toUpperCase(),
-                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
                     body: JSON.stringify(payload),
                 })
 
@@ -32,28 +32,7 @@ export const useRegisterStore = defineStore('register', {
                     throw new Error(this.error || JSON.stringify(data.errors))
                 }
 
-                // сохраняем ID и токен
-                this.tempId = data.data.id
-                this.token = data.token
-
-                // 2. Отправляем письмо (бэк сам вставит ссылку с id и hash)
-                const emailRes = await fetch(registerConfig.POSTSendEmail.url, {
-                    method: registerConfig.POSTSendEmail.type.toUpperCase(),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${this.token}`,
-                    },
-                    body: JSON.stringify({id: this.tempId, email: payload.email}),
-                })
-
-                const emailData = await emailRes.json()
-                if (!emailRes.ok) throw new Error(emailData.message || 'Ошибка отправки письма')
-
-                console.log("✅ Письмо отправлено, проверяй почту!")
-
-                return {registration: data, emailSent: emailData}
-
+                return data
             } catch (e) {
                 this.error = e.message
                 throw e

@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { Button } from "@/06-shared/ui/index.js";
+import {onMounted, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {Button, Preloader} from "@/06-shared/ui/index.js";
 
 const route = useRoute();
 const router = useRouter();
@@ -11,7 +11,7 @@ const loading = ref(true);   // индикатор загрузки
 const error = ref(false);    // флаг ошибки
 
 onMounted(async () => {
-  const { id, hash } = route.params;
+  const {id, hash} = route.params;
 
   if (!id || !hash) {
     status.value = "Некорректная ссылка верификации";
@@ -21,7 +21,10 @@ onMounted(async () => {
   }
 
   try {
-    const res = await fetch(`https://smart-lawyer-bot.ru/api/verification/verify/${id}/${hash}`);
+    const res = await fetch(`https://smart-lawyer-bot.ru/api/verification/verify/${id}/${hash}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    })
     const data = await res.json();
 
     if (!res.ok || !data.status) {
@@ -46,25 +49,71 @@ const goToLogin = () => {
 
 <template>
   <div class="verify-page">
-    <div v-if="loading">Подтверждаем вашу почту...</div>
-
-    <div v-else>
-      <p :class="{ error: error }">{{ status }}</p>
-      <Button v-if="!error" @click="goToLogin">Перейти на вход</Button>
+    <div class="verify-page__content container">
+      <div v-if="loading" class="verify-page__loading">
+        <p>Подтверждаем вашу почту</p>
+        <Preloader width="25" height="25"/>
+      </div>
+      <div v-else class="verify-page__status">
+        <p :class="{ error: error }">{{ status }}</p>
+        <router-link :to="{name: 'LoginPage'}" class="verify-page__link">
+          <Button class="btn__primary" v-if="!error" @click="goToLogin">Войти</Button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .verify-page {
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-  padding: 2rem;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.error {
-  color: red;
-  font-weight: bold;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 1rem;
+  }
+
+  &__loading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 0.25rem;
+
+    p {
+      font-size: 1.5rem;
+      line-height: 110%;
+      color: var(--text-color-1);
+    }
+  }
+
+  &__status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 1rem;
+
+    > p {
+      font-size: 1.5rem;
+      line-height: 110%;
+      color: var(--text-color-1);
+
+      &.error {
+        color: var(--red-2);
+      }
+    }
+  }
+
+  &__link {
+    max-width: 15.625rem;
+    width: 100%;
+
+    > button {
+      width: 100%;
+    }
+  }
 }
 </style>
