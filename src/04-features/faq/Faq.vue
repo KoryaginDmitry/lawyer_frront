@@ -1,10 +1,12 @@
 <script setup>
-import {ref, onMounted, computed} from "vue";
+import { ref, onMounted, computed } from "vue";
 import requestConfig from "@/04-features/faq/requestConfig.js";
-import {Icon} from "@/06-shared/ui/index.js";
+import { Icon } from "@/06-shared/ui/index.js";
+import Skeleton from "@/06-shared/ui/Skeleton/Skeleton.vue";
 
 const faqList = ref([]);
-const selectedGroupId = ref(null); // выбранная группа
+const selectedGroupId = ref(null);
+const loading = ref(true);
 
 async function getFaq() {
   try {
@@ -12,68 +14,87 @@ async function getFaq() {
     if (!response.ok) throw new Error(response.status);
 
     const data = await response.json();
-    faqList.value = data.data.map((group) => ({
+    faqList.value = (data.data || []).map((group) => ({
       id: group.id,
       name: group.name,
       description: group.description,
-      information: group.information.map((info) => ({
+      information: (group.information || []).map((info) => ({
         name: info.name,
         description: info.description,
       })),
     }));
 
-    // по умолчанию выбираем первую группу
     if (faqList.value.length) selectedGroupId.value = faqList.value[0].id;
   } catch (e) {
     console.error(e);
+  } finally {
+    loading.value = false;
   }
 }
 
 onMounted(getFaq);
 
-// функция для выбора группы
 function selectGroup(id) {
   selectedGroupId.value = id;
 }
 
-// вычисляемая группа для отображения в main
 const selectedGroup = computed(() =>
-    faqList.value.find((g) => g.id === selectedGroupId.value)
+    faqList.value.find((group) => group.id === selectedGroupId.value)
 );
 </script>
 
 <template>
   <div class="faq">
     <ul class="faq__side">
-      <li
-          v-for="group in faqList"
-          :key="group.id"
-          :class="{ active: group.id === selectedGroupId }"
-          @click="selectGroup(group.id)"
-      >
-        {{ group.name }}
-      </li>
-    </ul>
+      <template v-if="loading">
+        <Skeleton v-for="n in 2" :key="n" width="100%" height="36" />
+      </template>
 
-    <div class="faq__main" v-if="selectedGroup">
-      <div class="faq__main-desc">{{ selectedGroup.description }}</div>
-      <o-collapse
-          :open="false"
-          expanded
-          trigger-class="trigger"
-          v-for="item in selectedGroup.information"
-          :key="item.name"
-      >
-        <template #trigger="{ open }">
-          <span :class="open ? 'expanded' : ''">
-            {{ item.name }}
-            <Icon type="arrow-right"/>
-          </span>
-        </template>
-        <div class="notification">
-          <p>{{ item.description }}</p>
+      <template v-else>
+        <li
+            v-for="group in faqList"
+            :key="group.id"
+            :class="{ active: group.id === selectedGroupId }"
+            @click="selectGroup(group.id)"
+        >
+          {{ group.name }}
+        </li>
+      </template>
+    </ul>
+    <div class="faq__main">
+      <div v-if="loading">
+        <Skeleton width="100%" height="130" />
+      </div>
+      <div v-else>
+        <div v-if="selectedGroup" class="faq__main-desc">
+          {{ selectedGroup.description }}
         </div>
-      </o-collapse>
+        <div v-else class="faq__main-empty">
+          Нет данных
+        </div>
+      </div>
+      <template v-if="loading">
+        <Skeleton v-for="n in 2" :key="n" width="100%" height="42" style="margin-top: 8px" />
+      </template>
+      <template v-else>
+        <o-collapse
+            v-for="item in selectedGroup?.information || []"
+            :key="item.name"
+            :open="false"
+            expanded
+            trigger-class="trigger"
+        >
+          <template #trigger="{ open }">
+            <span :class="open ? 'expanded' : ''">
+              {{ item.name }}
+              <Icon type="arrow-right" />
+            </span>
+          </template>
+          <div class="notification">
+            <p>{{ item.description }}</p>
+          </div>
+        </o-collapse>
+      </template>
     </div>
   </div>
 </template>
