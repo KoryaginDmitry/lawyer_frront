@@ -1,8 +1,8 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { Button, Icon, Input } from "@/06-shared/ui/index.js";
-import { useRegisterStore } from "@/04-features/registration/model/registerStore.js";
+import {ref, computed} from "vue";
+import {useRouter} from "vue-router";
+import {Button, Icon, Input} from "@/06-shared/ui/index.js";
+import {useRegisterStore} from "@/04-features/registration/model/registerStore.js";
 
 const registerStore = useRegisterStore();
 const router = useRouter();
@@ -60,21 +60,26 @@ const handleSubmit = async () => {
   try {
     registerStore.clearBackendErrors();
 
-    // 1. Регистрируем пользователя
-    await registerStore.register({
+    // 1. Регистрируем пользователя (и сразу отправляем письмо внутри register)
+    const result = await registerStore.register({
       email: email.value,
       password: password.value,
       password_confirmation: passwordConfirmation.value,
     });
 
-    // 2. Отправляем письмо с ссылкой на подтверждение
-    await registerStore.sendVerificationEmail();
-
-    // 3. Сообщаем пользователю, что письмо отправлено
+    // 2. Сообщаем пользователю, что письмо отправлено
     alert(`Письмо с подтверждением отправлено на ${email.value}`);
 
+    // 3. Сбрасываем поля и touched
+    email.value = "";
+    password.value = "";
+    passwordConfirmation.value = "";
+    touchedEmail.value = false;
+    touchedPassword.value = false;
+    touchedPasswordConfirm.value = false;
+
     // Можно редиректить на страницу с инструкцией
-    // router.push("/registration/instruction"); // если есть отдельная страница с текстом "Проверьте почту"
+    // router.push("/registration/instruction");
 
   } catch (e) {
     console.error("Ошибка регистрации или отправки письма:", e);

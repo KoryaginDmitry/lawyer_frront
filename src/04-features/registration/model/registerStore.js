@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import registerConfig from '../requestConfig'
 
 export const useRegisterStore = defineStore('register', {
@@ -21,7 +21,7 @@ export const useRegisterStore = defineStore('register', {
                 // 1. Регистрация
                 const res = await fetch(registerConfig.POSTReg.url, {
                     method: registerConfig.POSTReg.type.toUpperCase(),
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                     body: JSON.stringify(payload),
                 })
 
@@ -34,11 +34,15 @@ export const useRegisterStore = defineStore('register', {
                 }
 
                 // Сохраняем данные для верификации
+                // Сохраняем данные
                 this.tempId = data.data.id
                 this.tempHash = data.data.hash
                 this.token = data.token
 
-                // 2. Отправка письма с подтверждением
+                const verificationLink = `${window.location.origin}/verify-email/${this.tempId}/${this.tempHash}`;
+                console.log("Ссылка для подтверждения почты:", verificationLink);
+
+                // Отправляем письмо
                 const emailRes = await fetch(registerConfig.POSTSendEmail.url, {
                     method: registerConfig.POSTSendEmail.type.toUpperCase(),
                     headers: {
@@ -46,13 +50,17 @@ export const useRegisterStore = defineStore('register', {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${this.token}`,
                     },
-                    body: JSON.stringify({ email: payload.email }),
+                    body: JSON.stringify({
+                        email: payload.email,
+                        hash: this.tempHash,
+                        id: this.tempId
+                    }),
                 })
 
                 const emailData = await emailRes.json()
                 if (!emailRes.ok) throw new Error(emailData.message || 'Ошибка отправки письма')
 
-                return { registration: data, emailSent: emailData }
+                return {registration: data, emailSent: emailData}
 
             } catch (e) {
                 this.error = e.message
