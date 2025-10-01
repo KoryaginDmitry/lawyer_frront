@@ -7,7 +7,6 @@ export const useRegisterStore = defineStore('register', {
         error: null,
         backendErrors: {},
         tempId: null,
-        tempHash: null,
         token: null,
     }),
 
@@ -33,16 +32,11 @@ export const useRegisterStore = defineStore('register', {
                     throw new Error(this.error || JSON.stringify(data.errors))
                 }
 
-                // Сохраняем данные для верификации
-                // Сохраняем данные
+                // сохраняем ID и токен
                 this.tempId = data.data.id
-                this.tempHash = data.data.hash
                 this.token = data.token
 
-                const verificationLink = `${window.location.origin}/verify-email/${this.tempId}/${this.tempHash}`;
-                console.log("Ссылка для подтверждения почты:", verificationLink);
-
-                // Отправляем письмо
+                // 2. Отправляем письмо (бэк сам вставит ссылку с id и hash)
                 const emailRes = await fetch(registerConfig.POSTSendEmail.url, {
                     method: registerConfig.POSTSendEmail.type.toUpperCase(),
                     headers: {
@@ -50,15 +44,13 @@ export const useRegisterStore = defineStore('register', {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${this.token}`,
                     },
-                    body: JSON.stringify({
-                        email: payload.email,
-                        hash: this.tempHash,
-                        id: this.tempId
-                    }),
+                    body: JSON.stringify({id: this.tempId, email: payload.email}),
                 })
 
                 const emailData = await emailRes.json()
                 if (!emailRes.ok) throw new Error(emailData.message || 'Ошибка отправки письма')
+
+                console.log("✅ Письмо отправлено, проверяй почту!")
 
                 return {registration: data, emailSent: emailData}
 
