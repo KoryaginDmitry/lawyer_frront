@@ -1,3 +1,25 @@
+//fadeUp
+.fade_up-enter-active {
+  animation: fadeInUp;
+  animation-duration: .5s;
+}
+
+.fade_up-leave-active {
+  animation: fadeInDown;
+  animation-duration: .5s;
+}
+
+// zoom
+.zoom-enter-active {
+  animation: zoomIn;
+  animation-duration: .3s;
+}
+
+.zoom-leave-active {
+  animation: zoomOut;
+  animation-duration: .3s;
+}
+
 // fade
 .fade-enter-active,
 .fade-leave-active {
@@ -7,4 +29,99 @@
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0.2;
+}
+
+// Slide
+.slide-next-enter-active,
+.slide-next-leave-active,
+.slide-prev-enter-active,
+.slide-prev-leave-active {
+  transition: transform 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.slide-prev-leave-to,
+.slide-next-enter,
+.slide-next-enter-from {
+  transform: translate3d(-100%, 0, 0);
+  position: absolute;
+  width: 100%;
+}
+
+.slide-prev-enter,
+.slide-prev-enter-from,
+.slide-next-leave-to {
+  transform: translate3d(100%, 0, 0);
+  position: absolute;
+  width: 100%;
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active,
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: transform 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.slide-down-enter,
+.slide-up-leave-to,
+.slide-down-enter-from {
+  transform: translate3d(0, -100%, 0);
+  position: absolute;
+  height: 100%;
+}
+
+.slide-up-enter,
+.slide-up-enter-from,
+.slide-down-leave-to {
+  transform: translate3d(0, 100%, 0);
+  position: absolute;
+  height: 100%;
+}
+
+.slide-enter-active {
+  transition: 2.5s ease-out;
+}
+
+.slide-leave-active {
+  transition: 0.2s ease-out;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-leave,
+.slide-enter-to,
+.slide-leave-from {
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.slide-enter,
+.slide-enter-from,
+.slide-leave-to {
+  overflow: hidden;
+  max-height: 0;
+}
+
+// fade_preloader
+.fade_preloader-enter-active,
+.fade_preloader-leave-active {
+  transition: opacity .8s ease;
+}
+
+.fade_preloader-enter-from,
+.fade_preloader-leave-to {
+  opacity: 0.3;
+}
+
+// popup
+.popup-anim-enter-active {
+  transition: all 0.5s;
+}
+
+.popup-anim-leave-active {
+  transition: all 0.3s;
+}
+
+.popup-anim-enter-from,
+.popup-anim-leave-to {
+  opacity: 0;
 }

@@ -14,4 +14,9 @@ export default {
         type: "post",
         routerKeys: [],
     },
+    GETUser: {
+        url: "https://smart-lawyer-bot.ru/api/users",
+        type: "get",
+        routerKeys: [],
+    },
 };

@@ -111,6 +111,10 @@ function handleClick() {
   &__tertiary {
     padding: 0.625rem 0.75rem;
     color: var(--accent-color-1);
+
+    &:hover {
+      color: var(--accent-color-2);
+    }
   }
 }
 </style>

@@ -11,8 +11,7 @@ onMounted(async () => {
   window.addEventListener("resize", handleWindowSizeChange);
   handleWindowSizeChange();
 
-  // ждём, пока токен подтянется и юзер заполнится
-  // await userStore.initAuth();
+  userStore.checkAuth();
 });
 
 onUnmounted(() => {
