@@ -35,7 +35,7 @@ const emailError = computed(() => {
 const passwordError = computed(() => {
   if (!touchedPassword.value) return "";
   if (!password.value) return "Введите пароль";
-  if (password.value.length < 6) return "Пароль должен быть не меньше 6 символов";
+  if (password.value.length < 8) return "Пароль должен быть не меньше 8 символов";
   return "";
 });
 
@@ -79,7 +79,7 @@ const handleSubmit = async () => {
     touchedPasswordConfirm.value = false;
 
     // Можно редиректить на страницу с инструкцией
-    // router.push("/registration/instruction");
+    router.push({name: 'LoginPage'});
 
   } catch (e) {
     console.error("Ошибка регистрации или отправки письма:", e);
@@ -89,13 +89,14 @@ const handleSubmit = async () => {
 
 <template>
   <form class="reg-form" @submit.prevent="handleSubmit">
-    <Input label="Email" v-model="email" :error="emailError"/>
+    <Input label="Email" v-model="email" :error="emailError" @blur="touchedEmail = true"/>
     <div class="reg-form__pass">
       <Input
           label="Пароль"
           :input="{ type: showPassword ? 'text' : 'password' }"
           v-model="password"
           :error="passwordError"
+          @blur="touchedPassword = true"
       />
       <Icon :type="showPassword ? 'unlocked' : 'lock'" @click="togglePassword"/>
     </div>
@@ -105,6 +106,7 @@ const handleSubmit = async () => {
           :input="{ type: showPasswordConfirm ? 'text' : 'password' }"
           v-model="passwordConfirmation"
           :error="passwordConfirmError"
+          @blur="touchedPasswordConfirm = true"
       />
       <Icon :type="showPasswordConfirm ? 'unlocked' : 'lock'" @click="togglePasswordConfirm"/>
     </div>

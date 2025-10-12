@@ -4,4 +4,14 @@ export default {
         type: "post",
         routerKeys: [],
     },
+    POSTSendRestoreLink: {
+        url: "https://smart-lawyer-bot.ru/api/forgot-password/send-link",
+        type: "post",
+        routerKeys: [],
+    },
+    POSTResetPassword: {
+        url: "https://smart-lawyer-bot.ru/api/forgot-password/reset-password",
+        type: "post",
+        routerKeys: [],
+    },
 };

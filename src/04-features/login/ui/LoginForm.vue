@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import {ref, computed, onMounted} from "vue";
 import { useRouter } from "vue-router";
 import { Button, Icon, Input } from "@/06-shared/ui/index.js";
 import { useUserStore } from "@/05-entities/user/userStore.js";
@@ -49,6 +49,11 @@ const handleSubmit = async (event) => {
     console.error("Ошибка логина:", userStore.error);
   }
 };
+
+onMounted(() => {
+  userStore.error = null;
+  userStore.backendErrors = {};
+});
 </script>
 
 <template>
@@ -69,11 +74,9 @@ const handleSubmit = async (event) => {
       />
       <Icon :type="showPassword ? 'unlocked' : 'lock'" @click="togglePassword"/>
     </div>
-
     <Button class="btn__secondary" @click="handleSubmit" :disabled="isSubmitDisabled">
       Войти
     </Button>
-
     <p v-if="userStore.error" class="login-form__error">
       {{ userStore.error }}
     </p>

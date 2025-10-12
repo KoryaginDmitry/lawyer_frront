@@ -5,9 +5,9 @@ import {FooterWidget} from "@/03-widgets/footer/index.js";
 
 <template>
   <div class="main-layout">
-    <HeaderWidget v-if="$route.name !== 'LoginPage' && $route.name !== 'RegPage'"/>
+    <HeaderWidget v-if="$route.name !== 'LoginPage' && $route.name !== 'RegPage' && $route.name !== 'ResetPass'"/>
     <router-view class="page"/>
-    <FooterWidget v-if="$route.name !== 'LoginPage' && $route.name !== 'RegPage'"/>
+    <FooterWidget v-if="$route.name !== 'LoginPage' && $route.name !== 'RegPage' && $route.name !== 'ResetPass'"/>
   </div>
 </template>
 

@@ -8,7 +8,7 @@ const utilityStore = useUtilityStore()
 <template>
   <div class="try">
     <div class="container">
-      <h2 class="section-title">{{ !utilityStore.isWindowTabletSize ? "Попробуйте нашего юридического ИИ - бота прямо сейчас!" : "Наш юридический ИИ - бот" }}</h2>
+      <h2 class="section-title">{{ !utilityStore.isWindowTabletSize ? "Попробуйте нашего юридического ИИ - бота в Telegram прямо сейчас!" : "Наш юридический ИИ - бот" }}</h2>
       <div class="try__content">
         <a class="try__link" href="https://t.me/PersonalAILawyerBot" target="_blank">
           <Button class="btn__primary">

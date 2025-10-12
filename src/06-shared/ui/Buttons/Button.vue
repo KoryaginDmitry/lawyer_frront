@@ -107,5 +107,10 @@ function handleClick() {
       color: var(--text-color-1);
     }
   }
+
+  &__tertiary {
+    padding: 0.625rem 0.75rem;
+    color: var(--accent-color-1);
+  }
 }
 </style>

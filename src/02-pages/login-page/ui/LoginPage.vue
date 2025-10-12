@@ -1,9 +1,19 @@
 <script setup>
 import LoginForm from "@/04-features/login/ui/LoginForm.vue";
-import {Preloader} from "@/06-shared/ui/index.js";
+import {Button, Preloader} from "@/06-shared/ui/index.js";
 import {useUserStore} from "@/05-entities/user/userStore.js";
+import RestoreForm from "@/04-features/login/ui/RestoreForm.vue";
+import {ref} from "vue";
 
 const userStore = useUserStore()
+
+// флаг, показывающий, какую форму отображать
+const showRestore = ref(false);
+
+// обработчик кнопки
+function toggleForm() {
+  showRestore.value = !showRestore.value;
+}
 </script>
 
 <template>
@@ -12,8 +22,12 @@ const userStore = useUserStore()
       <img src="@/06-shared/images/logo.png" alt="GPT Lawyer лого"/>
     </router-link>
     <div class="login-page__content">
-      <h1 class="login-page__title">Вход</h1>
-      <LoginForm/>
+      <h1 class="login-page__title">{{ !showRestore ? 'Вход' : 'Восстановить пароль' }}</h1>
+      <LoginForm v-if="!showRestore"/>
+      <RestoreForm v-else @update:loading="userStore.loading = $event"/>
+      <Button v-if="!showRestore" class="btn__tertiary login-page__restore-btn" @click="toggleForm">Восстановить
+        пароль
+      </Button>
       <transition name="fade">
         <div v-if="userStore.loading" class="login-page__preloader">
           <Preloader width="50" height="50"/>
@@ -47,6 +61,10 @@ const userStore = useUserStore()
     line-height: 100%;
     color: var(--text-color-1);
     text-align: center;
+  }
+
+  &__restore-btn {
+    margin: 0 auto;
   }
 
   &__preloader {
